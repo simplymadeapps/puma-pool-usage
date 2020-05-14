@@ -24,9 +24,10 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "puma", ">= 3.0", "< 5.0"
+  spec.add_runtime_dependency "puma", ">= 3.12", "< 5.0"
   spec.add_runtime_dependency "rails", ">= 5.0"
 
+  spec.add_development_dependency "appraisal"
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"

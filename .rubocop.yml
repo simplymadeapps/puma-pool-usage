@@ -1,12 +1,21 @@
 AllCops:
   NewCops: enable
 
+Bundler/OrderedGems:
+  Exclude:
+    - "gemfiles/**/*"
+
+Layout/LineLength:
+  Max: 120
+
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
+    - "*.gemspec"
 
-Metrics/LineLength:
-  Max: 120
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - "gemfiles/**/*"
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
