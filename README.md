@@ -1,6 +1,6 @@
 # Puma Pool Usage
 
-A Puma plugin that interprets usage statistics for the percentage of your resources under load. Uses Rails to log this statistic. Inspired by Heroku's pool usage statistic.
+A Puma plugin that interprets usage statistics for the percentage of your resources under load. Uses Rails to log this statistic. Inspired by [Tomas Ruzicka](https://github.com/LeZuse) and Heroku's pool usage statistics.
 
 Look at this neat log:
 
