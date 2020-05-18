@@ -12,5 +12,5 @@ end
 
 appraise "latest" do
   gem "rails"
-  gem "puma", "< 5.0"
+  gem "puma"
 end
