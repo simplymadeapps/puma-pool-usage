@@ -88,17 +88,17 @@ RSpec.describe "Puma Pool Usage" do
     end
 
     it "logs pool usage as 0.0 (0%) when no requests" do
-      expect(Rails.logger).to receive(:info).with(/sample#puma.pool_usage=0.0/)
+      expect(Rails.logger).to receive(:info).with(/sample#pool_usage=0.0/)
       subject.send(:log_pool_usage, { backlog: 0, pool_capacity: 5, running: 5 }, pid: 333)
     end
 
     it "logs pool usage as 1.0 (100%) when all workers are busy" do
-      expect(Rails.logger).to receive(:info).with(/sample#puma.pool_usage=1.0/)
+      expect(Rails.logger).to receive(:info).with(/sample#pool_usage=1.0/)
       subject.send(:log_pool_usage, { backlog: 0, pool_capacity: 0, running: 5 }, pid: 333)
     end
 
     it "logs pool usage as 1.2 (120%) when all workers are busy and a backlog exists" do
-      expect(Rails.logger).to receive(:info).with(/sample#puma.pool_usage=1.2/)
+      expect(Rails.logger).to receive(:info).with(/sample#pool_usage=1.2/)
       subject.send(:log_pool_usage, { backlog: 1, pool_capacity: 0, running: 5 }, pid: 333)
     end
 

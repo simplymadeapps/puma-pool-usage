@@ -4,7 +4,7 @@ A Puma plugin that interprets usage statistics for the percentage of your resour
 
 Look at this neat log:
 
-    source=PUMA pid=74840 sample#puma.pool_usage=0.8
+    source=PUMA pid=74840 sample#pool_usage=0.8
 
 If your web server is fielding no requests, usage will be 0.0 (0%). If every single resource has a request, usage will be 1.0 (100%). If you have a backlog of requests that cannot be processed because no resources are available, usage can be over 100% (like 1.4).
 

@@ -8,10 +8,10 @@ require "rails"
 # Usage expressed via a percentage of your available resources as a float.
 #
 # @example when running in cluster mode (pid is logged)
-#   source=PUMA pid=123456 sample#puma.pool_usage=0.8
+#   source=PUMA pid=123456 sample#pool_usage=0.8
 #
 # @example when not running in cluster mode (pid is logged as 0)
-#   source=PUMA pid=0 sample#puma.pool_usage=0.5
+#   source=PUMA pid=0 sample#pool_usage=0.5
 Puma::Plugin.create do
   # Method called by Puma on startup.
   #
@@ -48,6 +48,6 @@ Puma::Plugin.create do
     return if status[:pool_capacity].nil?
 
     pool_usage = (status[:running] - (status[:pool_capacity] - status[:backlog])) / status[:running].to_f
-    Rails.logger.info "source=PUMA pid=#{pid} sample#puma.pool_usage=#{pool_usage}"
+    Rails.logger.info "source=PUMA pid=#{pid} sample#pool_usage=#{pool_usage}"
   end
 end
