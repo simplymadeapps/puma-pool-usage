@@ -17,14 +17,15 @@ RSpec.describe "Puma Pool Usage" do
     let(:launcher) { double("launcher") }
 
     it "passes our block of work to `in_background`" do
+      stub_const("ENV", ENV.to_hash.merge("PUMA_STATS_FREQUENCY" => "30"))
+
       expect_any_instance_of(Puma::Plugin).to receive(:in_background) do |&block|
         expect(subject).to receive(:loop).and_yield
-        expect(subject).to receive(:sleep).and_return(true)
+        expect(subject).to receive(:sleep).with(30).and_return(true)
         expect(subject).to receive(:find_and_log_pool_usage)
         expect(Rails.logger).to receive(:flush).once
         block.call
       end
-
       subject.start(launcher)
     end
   end
@@ -78,6 +79,11 @@ RSpec.describe "Puma Pool Usage" do
   describe "log_pool_usage" do
     it "logs source as PUMA" do
       expect(Rails.logger).to receive(:info).with(/source=PUMA/)
+      subject.send(:log_pool_usage, { backlog: 0, pool_capacity: 5, running: 5 }, pid: 333)
+    end
+
+    it "logs pid" do
+      expect(Rails.logger).to receive(:info).with(/pid=333/)
       subject.send(:log_pool_usage, { backlog: 0, pool_capacity: 5, running: 5 }, pid: 333)
     end
 
