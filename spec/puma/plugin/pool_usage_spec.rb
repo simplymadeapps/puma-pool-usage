@@ -17,14 +17,15 @@ RSpec.describe "Puma Pool Usage" do
     let(:launcher) { double("launcher") }
 
     it "passes our block of work to `in_background`" do
+      stub_const("ENV", ENV.to_hash.merge("PUMA_STATS_FREQUENCY" => "30"))
+
       expect_any_instance_of(Puma::Plugin).to receive(:in_background) do |&block|
         expect(subject).to receive(:loop).and_yield
-        expect(subject).to receive(:sleep).and_return(true)
+        expect(subject).to receive(:sleep).with(30).and_return(true)
         expect(subject).to receive(:find_and_log_pool_usage)
         expect(Rails.logger).to receive(:flush).once
         block.call
       end
-
       subject.start(launcher)
     end
   end
@@ -81,18 +82,23 @@ RSpec.describe "Puma Pool Usage" do
       subject.send(:log_pool_usage, { backlog: 0, pool_capacity: 5, running: 5 }, pid: 333)
     end
 
+    it "logs pid" do
+      expect(Rails.logger).to receive(:info).with(/pid=333/)
+      subject.send(:log_pool_usage, { backlog: 0, pool_capacity: 5, running: 5 }, pid: 333)
+    end
+
     it "logs pool usage as 0.0 (0%) when no requests" do
-      expect(Rails.logger).to receive(:info).with(/sample#puma.pool_usage=0.0/)
+      expect(Rails.logger).to receive(:info).with(/sample#pool_usage=0.0/)
       subject.send(:log_pool_usage, { backlog: 0, pool_capacity: 5, running: 5 }, pid: 333)
     end
 
     it "logs pool usage as 1.0 (100%) when all workers are busy" do
-      expect(Rails.logger).to receive(:info).with(/sample#puma.pool_usage=1.0/)
+      expect(Rails.logger).to receive(:info).with(/sample#pool_usage=1.0/)
       subject.send(:log_pool_usage, { backlog: 0, pool_capacity: 0, running: 5 }, pid: 333)
     end
 
     it "logs pool usage as 1.2 (120%) when all workers are busy and a backlog exists" do
-      expect(Rails.logger).to receive(:info).with(/sample#puma.pool_usage=1.2/)
+      expect(Rails.logger).to receive(:info).with(/sample#pool_usage=1.2/)
       subject.send(:log_pool_usage, { backlog: 1, pool_capacity: 0, running: 5 }, pid: 333)
     end
 

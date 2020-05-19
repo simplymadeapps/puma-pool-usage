@@ -1,15 +1,21 @@
-# Puma::Pool::Usage
+# Puma Pool Usage
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/puma/pool/usage`. To experiment with that code, run `bin/console` for an interactive prompt.
+A Puma plugin that interprets usage statistics for the percentage of your resources under load. Uses Rails to log this statistic. Inspired by [Tomas Ruzicka](https://github.com/LeZuse) and Heroku's pool usage statistics.
 
-TODO: Delete this and the text above, and describe your gem
+Look at this neat log:
+
+    source=PUMA pid=74840 sample#pool_usage=0.8
+
+If your web server is fielding no requests, usage will be 0.0 (0%). If every single resource has a request, usage will be 1.0 (100%). If you have a backlog of requests that cannot be processed because no resources are available, usage can be over 100% (like 1.4).
+
+Wish to chart this data, setup alerts, or scale your servers based on it? Great idea, but it's beyond the scope of this plugin. This plugin provides the data, what you do with the data is up to you.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'puma-pool-usage'
+gem "puma-pool-usage"
 ```
 
 And then execute:
@@ -22,17 +28,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+In your Puma configuration file (config/puma.rb), add the following line:
 
-## Development
+```ruby
+plugin :pool_usage
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Restart your server and you're all set. 
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+## Configuration
+
+By default, Puma Pool Usage will log every Puma worker every 60 seconds. You can configure this via the environment variable `PUMA_STATS_FREQUENCY`. To gather this data only every 5 minutes, set your environment like so:
+
+    PUMA_STATS_FREQUENCY=300
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/puma-pool-usage. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/simplymadeapps/puma-pool-usage. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -40,4 +52,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Puma::Pool::Usage project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/puma-pool-usage/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Puma::Pool::Usage project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/simplymadeapps/puma-pool-usage/blob/master/CODE_OF_CONDUCT.md).
