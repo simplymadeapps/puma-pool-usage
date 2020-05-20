@@ -30,6 +30,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", ">= 12.3.3"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "rubocop", "~> 0.83.0"
-  spec.add_development_dependency "simplecov"
+  spec.add_development_dependency "simplecov", "< 0.18" # https://github.com/codeclimate/test-reporter/issues/413
   spec.add_development_dependency "simplecov-rcov"
 end
