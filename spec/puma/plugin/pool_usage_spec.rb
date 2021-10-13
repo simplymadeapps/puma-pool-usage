@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 RSpec.describe "Puma Pool Usage" do
-  subject { Puma::Plugins.find("pool_usage").new(Puma::Plugin) }
+  subject do
+    # starting in Puma 5.x, the new method no longer takes any arguments
+    Puma::Plugins.find("pool_usage").new
+  rescue ArgumentError
+    Puma::Plugins.find("pool_usage").new(Puma::Plugin)
+  end
 
   before do
     Rails.logger = Logger.new(STDOUT)

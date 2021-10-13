@@ -10,6 +10,11 @@ appraise "rails-6" do
   gem "puma", "~> 4.0"
 end
 
+appraise "rails-6-1" do
+  gem "rails", "~> 6.1"
+  gem "puma", "~> 5.0"
+end
+
 appraise "latest" do
   gem "rails"
   gem "puma"
