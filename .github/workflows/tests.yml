@@ -11,6 +11,10 @@ jobs:
       RAILS_ENV: test
     steps:
       - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
       - name: Install Code Climate
         run: |
