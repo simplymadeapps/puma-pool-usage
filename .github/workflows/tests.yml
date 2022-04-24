@@ -25,12 +25,12 @@ jobs:
 
       - name: Appraisal Install
         run: bundle exec appraisal install
+    
+      - name: Rubocop
+        run: bundle exec rubocop
 
       - name: Rspec
         run: bundle exec appraisal rspec
 
-      - name: Rubocop
-        run: bundle exec rubocop
-
       - name: Code Climate
-        run: ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+        run: ./cc-test-reporter after-build --exit-code $?
