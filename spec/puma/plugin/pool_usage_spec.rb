@@ -9,7 +9,7 @@ RSpec.describe "Puma Pool Usage" do
   end
 
   before do
-    Rails.logger = Logger.new(STDOUT)
+    Rails.logger = Logger.new($stdout)
   end
 
   describe "Registration" do
