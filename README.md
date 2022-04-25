@@ -1,6 +1,6 @@
 # Puma Pool Usage
 
-[![Build Status](https://travis-ci.org/simplymadeapps/puma-pool-usage.svg?branch=master)](https://travis-ci.org/simplymadeapps/puma-pool-usage)
+![Tests](https://github.com/simplymadeapps/puma-pool-usage/actions/workflows/tests.yml/badge.svg)
 [![Code Climate](https://codeclimate.com/github/simplymadeapps/puma-pool-usage/badges/gpa.svg)](https://codeclimate.com/github/simplymadeapps/puma-pool-usage)
 [![Test Coverage](https://codeclimate.com/github/simplymadeapps/puma-pool-usage/badges/coverage.svg)](https://codeclimate.com/github/simplymadeapps/puma-pool-usage/coverage)
 
@@ -38,7 +38,7 @@ In your Puma configuration file (config/puma.rb), add the following line:
 plugin :pool_usage
 ```
 
-Restart your server and you're all set. 
+Restart your server and you're all set.
 
 ## Configuration
 
