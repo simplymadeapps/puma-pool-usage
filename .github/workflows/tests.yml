@@ -38,4 +38,4 @@ jobs:
         run: bundle exec appraisal rspec
 
       - name: Code Climate
-        run: ./cc-test-reporter after-build --exit-code $?
+        run: ./cc-test-reporter after-build --exit-code $? --id ${{ secrets.CC_TEST_REPORTER_ID }}
