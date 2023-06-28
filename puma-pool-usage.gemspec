@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "puma-pool-usage"
-  spec.version       = "1.0.0"
+  spec.version       = "1.0.1"
   spec.authors       = ["Brandon Medenwald"]
   spec.email         = ["brandon@simplymadeapps.com"]
 
@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "puma", ">= 3.12", "< 6.0"
+  spec.add_runtime_dependency "puma", ">= 3.12", "< 7.0"
   spec.add_runtime_dependency "rails", ">= 5.0"
 
   spec.add_development_dependency "appraisal"
