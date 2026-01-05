@@ -2,6 +2,7 @@
 
 require "json"
 require "puma/plugin"
+require "logger"
 require "rails"
 
 # Plugin that outputs pool usage into Rails logs.

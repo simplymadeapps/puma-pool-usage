@@ -1,8 +1,6 @@
 # Puma Pool Usage
 
 ![Tests](https://github.com/simplymadeapps/puma-pool-usage/actions/workflows/tests.yml/badge.svg)
-[![Code Climate](https://codeclimate.com/github/simplymadeapps/puma-pool-usage/badges/gpa.svg)](https://codeclimate.com/github/simplymadeapps/puma-pool-usage)
-[![Test Coverage](https://codeclimate.com/github/simplymadeapps/puma-pool-usage/badges/coverage.svg)](https://codeclimate.com/github/simplymadeapps/puma-pool-usage/coverage)
 
 A Puma plugin that interprets usage statistics for the percentage of your resources under load. Uses Rails to log this statistic. Inspired by [Tomas Ruzicka](https://github.com/LeZuse) and Heroku's pool usage statistics.
 
