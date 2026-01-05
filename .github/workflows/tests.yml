@@ -4,6 +4,7 @@ on:
   pull_request:
   push:
     branches: [ master ]
+  workflow_call:
 
 jobs:
   tests:
@@ -11,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: [2.7.6, 3.0.4, 3.1.2]
+        ruby: [3.2.9, 3.3.10, 3.4.8, 4.0.0]
     env:
       RAILS_ENV: test
     steps:
