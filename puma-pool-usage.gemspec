@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "puma-pool-usage"
-  spec.version       = "1.0.1"
+  spec.version       = "2.0.0"
   spec.authors       = ["Brandon Medenwald"]
   spec.email         = ["brandon@simplymadeapps.com"]
 
@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://www.github.com/simplymadeapps/puma-pool-usage"
   spec.license       = "MIT"
 
-  spec.required_ruby_version = ">= 2.7.0"
+  spec.required_ruby_version = ">= 3.2.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
@@ -25,14 +25,16 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "puma", ">= 3.12", "< 7.0"
-  spec.add_dependency "rails", ">= 5.0"
+  spec.add_dependency "puma", ">= 5.0", "< 8.0"
+  spec.add_dependency "rails", ">= 7.2.0"
 
   spec.add_development_dependency "appraisal"
-  spec.add_development_dependency "bundler", "~> 2.0"
+  spec.add_development_dependency "bigdecimal"
+  spec.add_development_dependency "bundler", ">= 2.0"
+  spec.add_development_dependency "mutex_m"
   spec.add_development_dependency "rake", ">= 12.3.3"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "rubocop", "~> 1.28"
-  spec.add_development_dependency "simplecov", "< 0.18" # https://github.com/codeclimate/test-reporter/issues/413
+  spec.add_development_dependency "simplecov"
   spec.add_development_dependency "simplecov-rcov"
 end
