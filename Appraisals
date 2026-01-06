@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-appraise "rails-6-1" do
-  gem "rails", "~> 6.1.0"
-  gem "puma", "~> 5.0"
-end
-
 appraise "rails-7-2" do
   gem "rails", "~> 7.2"
   gem "puma", "~> 5.0"
