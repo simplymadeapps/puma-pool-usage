@@ -34,7 +34,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "mutex_m"
   spec.add_development_dependency "rake", ">= 12.3.3"
   spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_development_dependency "rubocop", "~> 1.28"
-  spec.add_development_dependency "simplecov", "< 0.18" # https://github.com/codeclimate/test-reporter/issues/413
+  spec.add_development_dependency "rubocop", ">= 3.2.0"
+  spec.add_development_dependency "simplecov"
   spec.add_development_dependency "simplecov-rcov"
 end
